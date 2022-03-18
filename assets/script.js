@@ -45,6 +45,7 @@ startQuiz.addEventListener("click", function() {
         }
         else {
             clearInterval
+            endQuiz()
         }
     }, 1000)
     Quiz()
@@ -85,6 +86,7 @@ function validate(event) {
     if (QI < questions.length) {
         Quiz(QI)
     }else {
+        endQuiz()
         result.textContent = "You have finish the quiz: " + timeRemaining + " seconds remaining"
     }
     quizArea.appendChild(result)
@@ -100,13 +102,11 @@ function endQuiz(){
     quizArea.appendChild(createH1)
 
     var createP = document.createElement("p")
-    createP.setAttribute("createP")
+    createP.setAttribute("id","createP")
 
     quizArea.appendChild(createH1)
     
-    if (timeRemaining > 0 ) {
-        var score = timeRemaining
-
+    if (timeRemaining > 0 ) {                
         clearInterval()        
     }
 
@@ -129,5 +129,29 @@ function endQuiz(){
     createSumbit.textContent = "submit"
 
     quizArea.appendChild(createSumbit)
+
+    createSumbit.addEventListener("click", function(){
+        var initials = createInput.value
+
+        while(initials === null) {
+            alert("Plz enter your initials or name")
+            var initials = createInput.value
+        }
+        var finalscore = {
+            initials: initials,
+            score: timeRemaining,
+        }
+
+        var allScores = localStorage.getItem(allScores)
+        if (allScores === null){
+            allScores = []
+        }else {
+            allScores = JSON.parse(allScores);
+        }
+        allScores.push(finalscore)
+        var newScore =JSON.stringify(allScores)
+        localStorage.setItem("allScores", newScore)
+
+    })
 
 }
