@@ -1,21 +1,13 @@
-var questions =[
+var questions = [
     {
         question: "What is a pseudo-class?",
         options: ["A CSS rule that contains no declarations.","A CSS declaration that hides the element.","An element that has more than one class.","A CSS keyword to target an element's state."],
         answer: "A CSS keyword to target an element's state."
-    
     },
     {
-        question:"What is an example of a pseudo-element?",
+        question:"Which of the following is an example of a pseudo-element?",
         options: ["::before","::after","::first-letter","all of the above"],
         answer: "all of the above"
-
-    },
-    {
-        question:"what does the Z-index property do?",
-        options: ["Removes an element from the DOM","changes the stacking order of elements","Changes the opacity of an element.","Forces an element to be positioned relatively."],
-        answer: "changes the stacking order of elements"
-
     },
     {
         question:"What do media queries allow us to do?",
@@ -24,20 +16,56 @@ var questions =[
 
     },
     {
+        question:"what does the Z-index property do?",
+        options: ["Removes an element from the DOM","changes the stacking order of elements","Changes the opacity of an element.","Forces an element to be positioned relatively."],
+        answer: "changes the stacking order of elements"
+    },
+    {
         question:"Which one of these is NOT a valid media type for media queries?",
         options: ["all","screen","speech","tablet"],
-        answer: "input"
+        answer: "tablet"
 
-    },
+    }
 ]
 
-haha
+var timer = document.querySelector("#Timer")
+var timeRemaining = 75
+var startQuiz = document.querySelector("#start")
+var quizArea = document.querySelector("#quiz")
+var QI = 0
+var qList = document.createElement("ul")
 
+timer.textContent = "Time Remaining: " + timeRemaining
 
+startQuiz.addEventListener("click", function() {
+    setInterval( function() {
+        if (timeRemaining > 0) {
+            timeRemaining--
+            timer.textContent = "Time Remaining: " + timeRemaining
+        }
+        else {
+            clearInterval
+        }
+    }, 1000)
+    Quiz()
+})
 
+var Quiz = function() {
+    quizArea.innerHTML = ""
 
-
-
-
-
-
+    for (i = 0; i < questions.length; i++) {
+        var currentQuestion = questions[QI].question
+        var currentOptions = questions[QI].options
+        quizArea.textContent = currentQuestion
+    }
+    currentOptions.forEach (function (newQ) {
+        var qlItem = document.createElement("li")
+        qlItem.textContent = newQ
+        quizArea.appendChild(qList)
+        qList.appendChild(qlItem)
+        qlItem.addEventListener("click", validate)
+    })
+}
+function validate(event) {
+    
+}
