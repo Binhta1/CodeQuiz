@@ -5,28 +5,27 @@ var questions = [
         answer: "A CSS keyword to target an element's state."
     },
     {
-        question:"Which of the following is an example of a pseudo-element?",
+        question: "Which of the following is an example of a pseudo-element?",
         options: ["::before","::after","::first-letter","all of the above"],
         answer: "all of the above"
     },
     {
-        question:"What do media queries allow us to do?",
-        options: ["Play videos on our page"," create responsive designs","change css at different browser widths","do nothing"],
-        answer: "change css at different browser widths"
+        question: "What do media queries allow us to do?",
+        options: ["Play videos on our page"," Create responsive designs","Change css at different browser widths","Do nothing"],
+        answer: "Change css at different browser widths"
 
     },
     {
-        question:"what does the Z-index property do?",
-        options: ["Removes an element from the DOM","changes the stacking order of elements","Changes the opacity of an element.","Forces an element to be positioned relatively."],
-        answer: "changes the stacking order of elements"
+        question: "what does the Z-index property do?",
+        options: ["Removes an element from the DOM","Changes the stacking order of elements","Changes the opacity of an element.","Forces an element to be positioned relatively."],
+        answer: "Changes the stacking order of elements"
     },
     {
-        question:"Which one of these is NOT a valid media type for media queries?",
-        options: ["all","screen","speech","tablet"],
-        answer: "tablet"
-
-    }
-]
+        question: "Which one of these is NOT a valid media type for media queries?",
+        options: ["All","Screen","Tablet","Speech"],
+        answer: "Tablet"
+    },
+];
 
 var timer = document.querySelector("#Timer")
 var timeRemaining = 75
@@ -34,7 +33,7 @@ var startQuiz = document.querySelector("#start")
 var quizArea = document.querySelector("#quiz")
 var QI = 0
 var qList = document.createElement("ul")
-var timePenalty = 5
+var timePenalty = 15
 
 timer.textContent = "Time Remaining: " + timeRemaining
 
@@ -78,7 +77,7 @@ function validate(event) {
             result.textContent = "Correct! that is right " + questions[QI].answer
         }else{
             timeRemaining = timeRemaining - timePenalty;
-            result.textContent = "Wrong! that is wrong " + questions[QI].answer
+            result.textContent = "Wrong! the answer is " + questions[QI].answer
         }
     }
     QI++
@@ -89,4 +88,46 @@ function validate(event) {
         result.textContent = "You have finish the quiz: " + timeRemaining + " seconds remaining"
     }
     quizArea.appendChild(result)
+}
+
+function endQuiz(){
+    quizArea.innerHTML= ""
+
+    var createH1 = document.createElement("h1")
+    createH1.setAttribute("id","createH1")
+    createH1.textContent = "FINISHED!!"
+
+    quizArea.appendChild(createH1)
+
+    var createP = document.createElement("p")
+    createP.setAttribute("createP")
+
+    quizArea.appendChild(createH1)
+    
+    if (timeRemaining > 0 ) {
+        var score = timeRemaining
+
+        clearInterval()        
+    }
+
+    createLabel = document.createElement("label")
+    createLabel.setAttribute("id", "createLabel")
+    createLabel.textContent = "Enter your Name"
+
+    quizArea.appendChild(createLabel)
+
+    var createInput = document.createElement("input")
+    createInput.setAttribute("type", "text")
+    createInput.setAttribute("id","initials")
+    createInput.textContent = ""
+
+    quizArea.appendChild(createInput)
+
+    var createSumbit = document.createElement("button")
+    createSumbit.setAttribute("type", "submit")
+    createSumbit.setAttribute("id","submit")    
+    createSumbit.textContent = "submit"
+
+    quizArea.appendChild(createSumbit)
+
 }
