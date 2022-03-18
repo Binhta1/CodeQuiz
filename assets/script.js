@@ -34,6 +34,7 @@ var startQuiz = document.querySelector("#start")
 var quizArea = document.querySelector("#quiz")
 var QI = 0
 var qList = document.createElement("ul")
+var timePenalty = 5
 
 timer.textContent = "Time Remaining: " + timeRemaining
 
@@ -52,6 +53,7 @@ startQuiz.addEventListener("click", function() {
 
 var Quiz = function() {
     quizArea.innerHTML = ""
+    qList.innerHTML = ""
 
     for (i = 0; i < questions.length; i++) {
         var currentQuestion = questions[QI].question
@@ -67,5 +69,24 @@ var Quiz = function() {
     })
 }
 function validate(event) {
+    var element = event.target
     
+    if (element.matches("li")){
+        var result = document.createElement("div")
+        result.setAttribute("id", "result")
+        if (element.textContent == questions[QI].answer){
+            result.textContent = "Correct! that is right " + questions[QI].answer
+        }else{
+            timeRemaining = timeRemaining - timePenalty;
+            result.textContent = "Wrong! that is wrong " + questions[QI].answer
+        }
+    }
+    QI++
+
+    if (QI < questions.length) {
+        Quiz(QI)
+    }else {
+        result.textContent = "You have finish the quiz: " + timeRemaining + " seconds remaining"
+    }
+    quizArea.appendChild(result)
 }
