@@ -44,7 +44,7 @@ startQuiz.addEventListener("click", function() {
             timer.textContent = "Time Remaining: " + timeRemaining
         }
         else {
-            clearInterval
+            clearInterval(timeRemaining)
             endQuiz()
         }
     }, 1000)
@@ -106,8 +106,8 @@ function endQuiz(){
 
     quizArea.appendChild(createH1)
     
-    if (timeRemaining > 0 ) {                
-        clearInterval()        
+    if (timeRemaining >= 0 ) {                
+        clearInterval(timeRemaining)        
     }
 
     createLabel = document.createElement("label")
@@ -134,7 +134,7 @@ function endQuiz(){
         var initials = createInput.value
 
         while(initials === null) {
-            alert("Plz enter your initials or name")
+            alert("Plz enter your Initials or Name")
             var initials = createInput.value
         }
         var finalscore = {
@@ -155,3 +155,5 @@ function endQuiz(){
     })
 
 }
+
+//localStorage.setItem('allScores', JSON.stringify({initials , allScores}))

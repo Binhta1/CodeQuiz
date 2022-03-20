@@ -4,6 +4,9 @@ header {
     flex-direction: column;
 
 }
+header:hover{
+    color: darkorange;
+}
 header h1{
     font-size: 50px;
 }
@@ -32,9 +35,21 @@ ul li {
     flex-direction: column;
     padding: 10px;
     border: 2px solid;
-    margin: 2px;
+    margin: 25px;
+    background-color: bisque;
+
 }
-.quiz {
-    font-size: 20px;
-    border: 2px solid;
+div#Timer {
+    font-size: xx-large;
+    font-weight: bolder;
+    color: crimson;
+    margin: 15px;
+    border: none;
+}
+div#result{
+    font-size: xx-large;
+}
+h4 {
+    display: flex;
+    float: left;
 }
