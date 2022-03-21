@@ -26,6 +26,8 @@ var questions = [
         answer: "Tablet"
     },
 ];
+// list of questions
+//all the variables
 
 var timer = document.querySelector("#Timer")
 var timeRemaining = 75
@@ -33,23 +35,34 @@ var startQuiz = document.querySelector("#start")
 var quizArea = document.querySelector("#quiz")
 var QI = 0
 var qList = document.createElement("ul")
-var timePenalty = 15
+var timePenalty = 5
+var timeIntervalId = 0
+var scoreDisplay = document.querySelector("#highScoreMessage")
+var highestScore = localStorage.getItem("highScore")
+var highestScoreInitials = localStorage.getItem("initials")
+
+if(highestScore === null){
+    scoreDisplay.textContent = "high score: 0"
+} else {
+    scoreDisplay.textContent = highestScoreInitials + " has a score of " + highestScore
+}
 
 timer.textContent = "Time Remaining: " + timeRemaining
 
 startQuiz.addEventListener("click", function() {
-    setInterval( function() {
-        if (timeRemaining > 0) {
-            timeRemaining--
+    timeIntervalId = setInterval( function() {
+        if (timeRemaining >= 0) {
+            timeRemaining --
             timer.textContent = "Time Remaining: " + timeRemaining
         }
         else {
-            clearInterval(timeRemaining)
+            clearInterval(timeIntervalId)
             endQuiz()
         }
     }, 1000)
     Quiz()
 })
+
 
 var Quiz = function() {
     quizArea.innerHTML = ""
@@ -81,13 +94,13 @@ function validate(event) {
             result.textContent = "Wrong! the answer is " + questions[QI].answer
         }
     }
+
     QI++
 
     if (QI < questions.length) {
         Quiz(QI)
     }else {
-        endQuiz()
-        result.textContent = "You have finish the quiz: " + timeRemaining + " seconds remaining"
+        endQuiz()       
     }
     quizArea.appendChild(result)
 }
@@ -103,12 +116,15 @@ function endQuiz(){
 
     var createP = document.createElement("p")
     createP.setAttribute("id","createP")
+    createP.textContent = "You have finish the quiz: " + timeRemaining + " seconds remaining"
 
-    quizArea.appendChild(createH1)
+    quizArea.appendChild(createP)
     
     if (timeRemaining >= 0 ) {                
-        clearInterval(timeRemaining)        
+        clearInterval(timeIntervalId)        
     }
+
+    timer.textContent= ""
 
     createLabel = document.createElement("label")
     createLabel.setAttribute("id", "createLabel")
@@ -131,29 +147,22 @@ function endQuiz(){
     quizArea.appendChild(createSumbit)
 
     createSumbit.addEventListener("click", function(){
-        var initials = createInput.value
+        var currentInitials = createInput.value
 
-        while(initials === null) {
-            alert("Plz enter your Initials or Name")
-            var initials = createInput.value
-        }
-        var finalscore = {
-            initials: initials,
-            score: timeRemaining,
-        }
+        highestScoreInitials = localStorage.getItem("initials")
+        highestScore = localStorage.getItem("highScore")
 
-        var allScores = localStorage.getItem(allScores)
-        if (allScores === null){
-            allScores = []
-        }else {
-            allScores = JSON.parse(allScores);
+        if (highestScore === null || timeRemaining > highestScore ) {
+            if (highestScore === null ){
+                highestScore = timeRemaining
+                highestScoreInitials = currentInitials
+            }
+            localStorage.setItem("highScore", timeRemaining),
+            localStorage.setItem("initials", currentInitials)
         }
-        allScores.push(finalscore)
-        var newScore =JSON.stringify(allScores)
-        localStorage.setItem("allScores", newScore)
+        scoreDisplay = document.querySelector("#highScoreMessage")
+       
+        scoreDisplay.textContent = highestScoreInitials + " has a score of " + highestScore
 
     })
-
 }
-
-//localStorage.setItem('allScores', JSON.stringify({initials , allScores}))

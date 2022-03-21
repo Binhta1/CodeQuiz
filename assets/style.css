@@ -10,10 +10,16 @@ header:hover{
 header h1{
     font-size: 50px;
 }
+h1#createH1 {
+    font-size: xx-large;
+    color: crimson;
+}
 
 #quiz{
-    text-align: center;
-   
+    text-align: center;  
+}
+main#quiz{
+    font-size: xx-large;
 }
 body{
     background-color: antiquewhite;
@@ -25,7 +31,11 @@ body{
 }
 div{
     text-align: center;
-    border: 2px solid black;
+    
+}
+div#result{
+    padding: 10px;
+    font-size: xx-large;
 }
 h3 {
     text-align: center;
@@ -52,4 +62,8 @@ div#result{
 h4 {
     display: flex;
     float: left;
+}
+p#createP {
+    font-size: xx-large;
+    color: coral;
 }
