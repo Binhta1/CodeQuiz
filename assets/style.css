@@ -57,19 +57,20 @@ div#Timer {
     border: none;
 }
 div#result {
-    font-size: xx-large;
+    font-size: x-large;
+    color: blue;
 }
 h4 {
     display: flex;
     float: left;
 }
 p#createP {
-    font-size: xx-large;
+    font-size: x-large;
     color: coral;
 }
 
 div#highScoreMessage {
-    font-size: xx-large;
+    font-size: x-large;
     margin: 15px;
     padding: 10px;
     color: crimson;
