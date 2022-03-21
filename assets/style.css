@@ -4,10 +4,10 @@ header {
     flex-direction: column;
 
 }
-header:hover{
+header:hover {
     color: darkorange;
 }
-header h1{
+header h1 {
     font-size: 50px;
 }
 h1#createH1 {
@@ -15,10 +15,10 @@ h1#createH1 {
     color: crimson;
 }
 
-#quiz{
+#quiz {
     text-align: center;  
 }
-main#quiz{
+main#quiz {
     font-size: xx-large;
 }
 body{
@@ -29,11 +29,11 @@ body{
     border: 3px solid red;
     color: red;
 }
-div{
+div {
     text-align: center;
     
 }
-div#result{
+div#result {
     padding: 10px;
     font-size: xx-large;
 }
@@ -56,7 +56,7 @@ div#Timer {
     margin: 15px;
     border: none;
 }
-div#result{
+div#result {
     font-size: xx-large;
 }
 h4 {
@@ -66,4 +66,21 @@ h4 {
 p#createP {
     font-size: xx-large;
     color: coral;
+}
+
+div#highScoreMessage {
+    font-size: xx-large;
+    margin: 15px;
+    padding: 10px;
+    color: crimson;
+    font-weight: bold;
+}
+label#createLabel {
+    font-size: x-large;
+    padding: 5px;
+    margin: 5px;
+}
+button#submit {
+    color: black;
+    background: red;
 }
