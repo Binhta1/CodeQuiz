@@ -76,11 +76,15 @@ div#highScoreMessage {
     font-weight: bold;
 }
 label#createLabel {
-    font-size: x-large;
+    font-size: large;
     padding: 5px;
     margin: 5px;
 }
 button#submit {
     color: black;
     background: red;
+}
+
+input#initials {
+    margin: 5px;
 }
